@@ -16,10 +16,10 @@ A full-featured **Flask + SQLite Point of Sale system** for small businesses.
 - Chart.js
 
 ### 📸 Preview
-(Add screenshot here once hosted)
+<img width="1710" height="1107" alt="Screenshot 2025-10-05 at 2 55 45 PM" src="https://github.com/user-attachments/assets/b6847f90-8ea1-4c46-8b26-a84792841f6a" />
 
 ### 🔗 Live Demo
-Coming soon — Deployed via [Render.com](https://render.com)
+https://abdullahtechshop.onrender.com/
 
 ---
 
