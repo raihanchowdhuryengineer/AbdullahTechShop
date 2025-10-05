@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="d-flex align-items-center mb-3">
+  <h3 class="fw-bold mb-0">Products</h3>
+  <a href="/add" class="btn btn-primary ms-auto">➕ Add Product</a>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body p-0">
+    <table class="table table-striped mb-0">
+      <thead class="table-primary">
+        <tr>
+          <th>ID</th><th>Name</th><th>SKU</th><th>Category</th>
+          <th class="text-end">Buy (৳)</th><th class="text-end">Sell (৳)</th>
+          <th class="text-end">Stock</th><th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for p in products %}
+        <tr>
+          <td>{{ p['id'] }}</td>
+          <td>{{ p['name'] }}</td>
+          <td>{{ p['sku'] or '-' }}</td>
+          <td>{{ p['category'] or '-' }}</td>
+          <td class="text-end">{{ '%.2f'|format(p['purchase_price']) }}</td>
+          <td class="text-end">{{ '%.2f'|format(p['selling_price']) }}</td>
+          <td class="text-end">{{ p['stock'] }}</td>
+          <td class="text-center">
+            <a class="btn btn-sm btn-warning" href="/edit/{{ p['id'] }}">Edit</a>
+          </td>
+        </tr>
+      {% else %}
+        <tr><td colspan="8" class="text-center text-muted py-3">No products yet.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3 class="fw-bold mb-3">Create Bill</h3>
+
+<form method="post" class="card p-3 p-md-4 shadow-sm" id="sellForm">
+  <div class="card mb-3 p-3">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Customer Name</label>
+        <input name="customer_name" class="form-control form-control-lg" placeholder="Full name">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Phone Number</label>
+        <input name="customer_phone" class="form-control form-control-lg" placeholder="017xxxxxxxx">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Address</label>
+        <input name="customer_address" class="form-control form-control-lg" placeholder="Area / City">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Payment Method</label>
+        <select name="payment_method" class="form-select form-select-lg">
+          <option value="Cash">Cash</option>
+          <option value="Bkash">Bkash</option>
+          <option value="Card">Card</option>
+          <option value="Online">Online</option>
+        </select>
+      </div>
+      <div class="col-md-8">
+        <label class="form-label">Search Product</label>
+        <input type="text" id="searchBox" class="form-control form-control-lg" placeholder="Type product name...">
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive mt-3">
+    <table class="table table-striped align-middle">
+      <thead class="table-primary">
+        <tr>
+          <th>Product</th>
+          <th>SKU</th>
+          <th class="text-end">Price (৳)</th>
+          <th class="text-end">Stock</th>
+          <th class="text-center">Qty</th>
+          <th class="text-end">Subtotal (৳)</th>
+        </tr>
+      </thead>
+      <tbody id="itemsBody">
+        {% for p in products %}
+        <tr data-price="{{ p['selling_price'] }}" data-stock="{{ p['stock'] }}">
+          <td>{{ p['name'] }}</td>
+          <td>{{ p['sku'] or '-' }}</td>
+          <td class="text-end">{{ '%.2f'|format(p['selling_price']) }}</td>
+          <td class="text-end">{{ p['stock'] }}</td>
+          <td class="text-center" style="max-width:120px">
+            <input type="number" min="0" max="{{ p['stock'] }}" value="0"
+                   name="qty_{{ p['id'] }}" class="form-control qty-input">
+          </td>
+          <td class="text-end subtotal">৳ 0.00</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6" class="text-center text-muted py-3">No products available.</td></tr>
+        {% endfor %}
+      </tbody>
+      <tfoot class="table-light">
+        <tr>
+          <th colspan="5" class="text-end">Total (৳):</th>
+          <th class="text-end" id="grandTotal">৳ 0.00</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="d-flex gap-2 mt-3">
+    <a href="/" class="btn btn-outline-secondary btn-lg no-print">Cancel</a>
+    <button class="btn btn-success btn-lg ms-auto no-print">Save & Generate Bill</button>
+  </div>
+</form>
+
+<script>
+function fmt(n){ return "৳ " + Number(n).toFixed(2); }
+function recalc(){
+  let grand=0;
+  document.querySelectorAll("#itemsBody tr").forEach(r=>{
+    const price=parseFloat(r.dataset.price);
+    const stock=parseInt(r.dataset.stock);
+    const qtyEl=r.querySelector(".qty-input");
+    let q=parseInt(qtyEl.value||0);
+    if(q<0) q=0;
+    if(q>stock){ q=stock; qtyEl.value=stock; }
+    const sub=price*q;
+    r.querySelector(".subtotal").textContent=fmt(sub);
+    grand+=sub;
+  });
+  document.getElementById("grandTotal").textContent=fmt(grand);
+}
+document.querySelectorAll(".qty-input").forEach(i=>i.addEventListener("input",recalc));
+recalc();
+<script>
+function fmt(n){ return "৳ " + Number(n).toFixed(2); }
+function recalc(){
+  let grand=0;
+  document.querySelectorAll("#itemsBody tr").forEach(r=>{
+    const price=parseFloat(r.dataset.price);
+    const stock=parseInt(r.dataset.stock);
+    const qtyEl=r.querySelector(".qty-input");
+    let q=parseInt(qtyEl.value||0);
+    if(q<0) q=0;
+    if(q>stock){ q=stock; qtyEl.value=stock; }
+    const sub=price*q;
+    r.querySelector(".subtotal").textContent=fmt(sub);
+    grand+=sub;
+  });
+  document.getElementById("grandTotal").textContent=fmt(grand);
+}
+document.querySelectorAll(".qty-input").forEach(i=>i.addEventListener("input",recalc));
+recalc();
+
+// 🔍 Product search filter
+const searchBox = document.getElementById("searchBox");
+searchBox.addEventListener("input", () => {
+  const term = searchBox.value.toLowerCase();
+  document.querySelectorAll("#itemsBody tr").forEach(row => {
+    const product = row.cells[0].textContent.toLowerCase();
+    if (product.includes(term)) row.style.display = "";
+    else row.style.display = "none";
+  });
+});
+</script>
+
+</script>
+{% endblock %}

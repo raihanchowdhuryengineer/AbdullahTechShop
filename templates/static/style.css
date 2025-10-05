@@ -1,0 +1,219 @@
+/* ====== GENERAL ====== */
+body {
+  background-color: #f8fafc;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.05rem;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
+  color: #212529;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ====== NAVBAR ====== */
+.navbar {
+  background: linear-gradient(90deg, #0d6efd, #00b3ff);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* ====== BUTTONS ====== */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #007bff, #00b3ff);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #0069d9, #00a1e0);
+}
+
+.btn-warning {
+  background-color: #f6b100;
+  border: none;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background-color: #e5a000;
+}
+
+.btn-success {
+  background-color: #20c997;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #18b184;
+}
+
+/* ====== CARDS ====== */
+.card {
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.card-header {
+  font-weight: 600;
+  background-color: #fff;
+  border-bottom: 2px solid #f1f3f5;
+}
+
+/* ====== TABLES ====== */
+.table {
+  font-size: 1rem;
+}
+
+.table th {
+  background-color: #e9f3ff;
+  color: #212529;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f5faff;
+}
+
+/* ====== FORMS ====== */
+.form-control {
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1.05rem;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* ====== POS (Sell Page) ====== */
+.qty-input {
+  text-align: center;
+  font-size: 1.1rem;
+  border: 1px solid #ced4da;
+}
+
+.subtotal {
+  font-weight: 500;
+}
+
+#grandTotal {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+/* ====== PRINT AREA ====== */
+@media print {
+  body {
+    background: #fff;
+    font-size: 1rem;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-area {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0;
+    padding: 0;
+  }
+  .table {
+    border: 1px solid #000;
+  }
+}
+/* Dashboard Styling */
+body {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 1.1rem;
+}
+
+h3, h5 {
+  font-weight: 700;
+}
+
+.kpi {
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: 0.2s;
+}
+.kpi:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.list-group-item {
+  font-size: 1rem;
+}
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, #0d6efd, #00b3ff);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+
+/* KPI Equal Height */
+.kpi {
+  border-radius: 12px;
+  transition: 0.2s;
+  min-height: 170px;
+}
+.kpi:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* Clickable transactions */
+.clickable-transaction {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.clickable-transaction:hover {
+  background-color: #f5faff;
+}
+
+/* Larger Time Section */
+#liveTime {
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+#searchBox {
+  border: 2px solid #0d6efd;
+  font-size: 1.2rem;
+}
+#searchBox:focus {
+  border-color: #198754;
+  box-shadow: 0 0 5px rgba(25,135,84,0.4);
+}
+.navbar {
+  background: linear-gradient(90deg, #0d6efd, #00b3ff);
+  border-bottom: 3px solid #ffc107;
+}
+
+/* Force white brand title color */
+.navbar-brand {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+}
+
+
+

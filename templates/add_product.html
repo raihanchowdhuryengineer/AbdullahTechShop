@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3 class="fw-bold mb-3">Add Product</h3>
+<form method="post" class="card p-4 shadow-sm">
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label class="form-label">SKU</label>
+      <input name="sku" class="form-control form-control-lg" placeholder="e.g. IP14-128-BLK">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Name</label>
+      <input name="name" class="form-control form-control-lg" required>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Category</label>
+      <input name="category" class="form-control form-control-lg" placeholder="Phone / Laptop / Accessory">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Purchase Price (৳)</label>
+      <input type="number" step="0.01" name="purchase_price" class="form-control form-control-lg" required>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Selling Price (৳)</label>
+      <input type="number" step="0.01" name="selling_price" class="form-control form-control-lg" required>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Opening Stock</label>
+      <input type="number" name="stock" class="form-control form-control-lg" required min="0" value="0">
+    </div>
+  </div>
+  <div class="mt-4">
+    <button class="btn btn-success btn-lg">Save</button>
+    <a href="/products" class="btn btn-secondary btn-lg">Cancel</a>
+  </div>
+</form>
+{% endblock %}

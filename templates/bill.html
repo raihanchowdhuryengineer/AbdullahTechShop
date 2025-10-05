@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="print-area">
+  <div class="d-flex align-items-center mb-3 no-print">
+    <a href="/sell" class="btn btn-outline-secondary me-2">← New Bill</a>
+    <button class="btn btn-primary" onclick="window.print()">🖨 Print</button>
+    <a href="/" class="btn btn-light ms-auto">Dashboard</a>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="text-center mb-3">
+        <h3 class="fw-bold mb-1">Abdullah’s Tech Shop</h3>
+        <p class="small text-muted mb-1">
+          A leading Retail chain store for 113+ top brands of smartphones, laptops, gadgets & more.<br>
+          Your ultimate tech destination!!
+        </p>
+        <hr>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Customer Details</strong><br>
+          <span>{{ customer_name or 'Walk-in Customer' }}</span><br>
+          <span>📞 {{ customer_phone or '-' }}</span><br>
+          <span>🏠 {{ customer_address or '-' }}</span>
+        </div>
+        <div class="col-md-6 text-end">
+          <strong>Invoice #: {{ sale['id'] }}</strong><br>
+          <span>Date & Time: {{ sale['date'] }}</span><br>
+        </div>
+      </div>
+
+      <table class="table table-sm">
+        <thead class="table-light">
+          <tr><th>Item</th><th>SKU</th><th class="text-end">Qty</th><th class="text-end">Price (৳)</th><th class="text-end">Subtotal (৳)</th></tr>
+        </thead>
+        <tbody>
+          {% for name, sku, qty, price_each, subtotal in items %}
+          <tr>
+            <td>{{ name }}</td><td>{{ sku or '-' }}</td>
+            <td class="text-end">{{ qty }}</td>
+            <td class="text-end">{{ '%.2f'|format(price_each) }}</td>
+            <td class="text-end">{{ '%.2f'|format(subtotal) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr><th colspan="4" class="text-end">TOTAL (৳)</th><th class="text-end">{{ '%.2f'|format(sale['total_amount']) }}</th></tr>
+        </tfoot>
+      </table>
+
+      <div class="text-muted small">Profit on this bill: ৳ {{ '%.2f'|format(sale['total_profit']) }}</div>
+      <div class="text-center mt-4">
+        <h6 class="fw-bold mb-0">Thank you for shopping with us!</h6>
+        <p class="small mb-0">Visit again at <strong>Abdullah’s Tech Shop</strong> — Your ultimate tech destination 💻📱</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
